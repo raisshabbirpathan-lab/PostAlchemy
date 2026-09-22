@@ -1,216 +1,203 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Google SEO Meta Tags -->
-    <title>SwiftSocial AI - Instant Social Media Content Generator</title>
-    <meta name="description" content="Transform your text into viral LinkedIn posts, X threads, and Instagram captions instantly with SwiftSocial AI. Fast, original, and smart.">
-    <meta name="keywords" content="AI content generator, social media tool, SwiftSocial, viral posts, text transformer">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>PostAlchemy - Turn Simple Thoughts into Viral Posts</title>
+    <meta name="description" content="PostAlchemy is a free AI-powered tool that transforms your raw ideas into viral LinkedIn posts, X threads, and Instagram captions instantly. No signup required.">
+    <meta name="keywords" content="AI content generator, social media tool, PostAlchemy, viral posts, LinkedIn generator, Instagram captions">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-        body {
-            background: radial-gradient(circle at top, #0f172a, #020617);
-            color: #f8fafc;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        .container {
-            width: 100%;
-            max-width: 550px;
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 24px;
-            padding: 28px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            text-align: center;
-        }
-        .brand-logo {
-            font-size: 28px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #38bdf8, #34d399);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 6px;
-            letter-spacing: -0.5px;
-        }
-        .tagline {
-            font-size: 13px;
-            color: #94a3b8;
-            margin-bottom: 24px;
-        }
-        textarea {
-            width: 100%;
-            height: 130px;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 14px;
-            padding: 14px;
-            color: #fff;
-            font-size: 14px;
-            resize: none;
-            outline: none;
-            transition: all 0.3s;
-            margin-bottom: 20px;
-        }
-        textarea:focus {
-            border-color: #38bdf8;
-            box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
-        }
-        .btn-group {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .action-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #f1f5f9;
-            padding: 12px 8px;
-            font-size: 12px;
-            font-weight: 500;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .action-btn:hover {
-            background: #38bdf8;
-            color: #020617;
-            font-weight: 600;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
-            transform: translateY(-2px);
-        }
-        .output-box {
-            position: relative;
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 14px;
-            padding: 16px;
-            text-align: left;
-            min-height: 100px;
-            font-size: 14px;
-            color: #cbd5e1;
-            line-height: 1.6;
-            white-space: pre-wrap; /* Line breaks maintain rakhne ke liye */
-        }
-        .output-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            font-size: 12px;
-            color: #64748b;
-        }
-        .copy-btn {
-            background: rgba(56, 189, 248, 0.1);
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            color: #38bdf8;
-            padding: 4px 10px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 11px;
-            transition: 0.2s;
-        }
-        .copy-btn:hover {
-            background: #38bdf8;
-            color: #020617;
-        }
-        footer {
-            margin-top: 24px;
-            font-size: 11px;
-            color: #475569;
-        }
+        * { font-family: 'Inter', sans-serif; }
+        body { background: radial-gradient(circle at top, #0f172a, #020617); color: #f8fafc; }
+        .glass { background: rgba(30, 41, 59, 0.4); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .gradient-text { background: linear-gradient(135deg, #38bdf8, #34d399); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        textarea { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; resize: none; outline: none; transition: all 0.3s; }
+        textarea:focus { border-color: #38bdf8; box-shadow: 0 0 10px rgba(56, 189, 248, 0.2); }
+        .action-btn { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: #f1f5f9; transition: all 0.2s ease; }
+        .action-btn:hover { background: #38bdf8; color: #020617; font-weight: 600; box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); transform: translateY(-2px); }
+        .output-box { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.05); white-space: pre-wrap; }
+        details summary::-webkit-details-marker { display: none; }
     </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col">
 
-    <div class="container">
-        <div class="brand-logo">SwiftSocial AI</div>
-        <div class="tagline">Instant & Smart Social Media Content Generator</div>
-
-        <textarea id="inputText" placeholder="Paste your article or long transcript here..."></textarea>
-
-        <div class="btn-group">
-            <button class="action-btn" onclick="generateContent('LinkedIn')">LinkedIn Post</button>
-            <button class="action-btn" onclick="generateContent('X (Twitter)')">X Thread</button>
-            <button class="action-btn" onclick="generateContent('Instagram')">IG Caption</button>
-        </div>
-
-        <div class="output-box">
-            <div class="output-header">
-                <span>Generated Output</span>
-                <button class="copy-btn" onclick="copyText()">Copy Text</button>
+    <!-- NAVBAR -->
+    <nav class="glass sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold gradient-text">PostAlchemy</a>
+            <div class="hidden md:flex space-x-8 items-center text-sm font-medium">
+                <a href="#tool" class="hover:text-sky-400 transition">Tool</a>
+                <a href="#features" class="hover:text-sky-400 transition">Features</a>
+                <a href="#faq" class="hover:text-sky-400 transition">FAQ</a>
+                <a href="about.html" class="hover:text-sky-400 transition">About</a>
+                <a href="contact.html" class="hover:text-sky-400 transition">Contact</a>
             </div>
-            <div id="outputText">Your repurposed content will appear here...</div>
+            <button id="mobile-menu-btn" class="md:hidden text-2xl">☰</button>
         </div>
+        <div id="mobile-menu" class="hidden md:hidden glass px-4 pb-4 space-y-3">
+            <a href="#tool" class="block hover:text-sky-400">Tool</a>
+            <a href="#features" class="block hover:text-sky-400">Features</a>
+            <a href="#faq" class="block hover:text-sky-400">FAQ</a>
+            <a href="about.html" class="block hover:text-sky-400">About</a>
+            <a href="contact.html" class="block hover:text-sky-400">Contact</a>
+        </div>
+    </nav>
 
-        <footer>&copy; 2026 SwiftSocial AI. All rights reserved.</footer>
-    </div>
+    <!-- HERO -->
+    <header class="text-center px-4 pt-16 pb-8">
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-4">
+            Turn Simple Thoughts into <span class="gradient-text">Viral Posts</span>
+        </h1>
+        <p class="text-slate-400 max-w-2xl mx-auto text-lg">
+            PostAlchemy is a free AI-powered tool that transforms your raw ideas into professional LinkedIn posts, X threads, and Instagram captions — instantly.
+        </p>
+        <div class="mt-6 flex justify-center gap-4 text-xs text-slate-500">
+            <span>🔒 100% Free</span>
+            <span>⚡ No Signup</span>
+            <span>✨ AI-Powered</span>
+        </div>
+    </header>
+
+    <!-- MAIN TOOL -->
+    <main id="tool" class="flex-grow px-4 py-8">
+        <div class="max-w-2xl mx-auto glass rounded-3xl p-6 md:p-8 shadow-2xl">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-bold gradient-text">AI Content Generator</h2>
+                <p class="text-sm text-slate-400 mt-1">Paste your raw thoughts below</p>
+            </div>
+            <textarea id="inputText" rows="5" class="w-full rounded-2xl p-4 mb-5 text-sm" placeholder="Example: Today I learned that consistency beats talent..."></textarea>
+            <div class="grid grid-cols-3 gap-3 mb-5">
+                <button class="action-btn rounded-xl py-3 text-xs" onclick="generate('linkedin')">LinkedIn</button>
+                <button class="action-btn rounded-xl py-3 text-xs" onclick="generate('twitter')">X Thread</button>
+                <button class="action-btn rounded-xl py-3 text-xs" onclick="generate('instagram')">Instagram</button>
+            </div>
+            <div id="output" class="output-box rounded-2xl p-4 min-h-[100px] text-sm text-slate-300">
+                Your generated content will appear here...
+            </div>
+        </div>
+    </main>
+
+    <!-- FEATURES -->
+    <section id="features" class="px-4 py-16 max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-12">Why Choose <span class="gradient-text">PostAlchemy</span>?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="glass rounded-2xl p-6 text-center hover:border-sky-400 transition">
+                <div class="text-4xl mb-3">⚡</div>
+                <h3 class="font-bold mb-2">Lightning Fast</h3>
+                <p class="text-sm text-slate-400">Generate content in seconds with our smart AI engine.</p>
+            </div>
+            <div class="glass rounded-2xl p-6 text-center hover:border-sky-400 transition">
+                <div class="text-4xl mb-3">🎯</div>
+                <h3 class="font-bold mb-2">Platform Optimized</h3>
+                <p class="text-sm text-slate-400">Each output is tailored for LinkedIn, X, or Instagram.</p>
+            </div>
+            <div class="glass rounded-2xl p-6 text-center hover:border-sky-400 transition">
+                <div class="text-4xl mb-3">🔒</div>
+                <h3 class="font-bold mb-2">Privacy First</h3>
+                <p class="text-sm text-slate-400">Your text is never stored. Everything is processed live.</p>
+            </div>
+            <div class="glass rounded-2xl p-6 text-center hover:border-sky-400 transition">
+                <div class="text-4xl mb-3">💰</div>
+                <h3 class="font-bold mb-2">100% Free</h3>
+                <p class="text-sm text-slate-400">No hidden fees, no signup, no credit card required.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="px-4 py-16 max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-12">How It Works</h2>
+        <div class="space-y-6">
+            <div class="flex items-start gap-4">
+                <div class="gradient-text text-3xl font-bold">01</div>
+                <div>
+                    <h3 class="font-bold text-lg">Paste Your Thought</h3>
+                    <p class="text-slate-400 text-sm">Type or paste any raw idea, note, or sentence into the input box.</p>
+                </div>
+            </div>
+            <div class="flex items-start gap-4">
+                <div class="gradient-text text-3xl font-bold">02</div>
+                <div>
+                    <h3 class="font-bold text-lg">Choose a Platform</h3>
+                    <p class="text-slate-400 text-sm">Click LinkedIn, X Thread, or Instagram to select your target format.</p>
+                </div>
+            </div>
+            <div class="flex items-start gap-4">
+                <div class="gradient-text text-3xl font-bold">03</div>
+                <div>
+                    <h3 class="font-bold text-lg">Copy & Post</h3>
+                    <p class="text-slate-400 text-sm">Your AI-optimized content is ready instantly. Copy it and start posting!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="px-4 py-16 max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+            <details class="glass rounded-xl p-5 cursor-pointer">
+                <summary class="font-semibold flex justify-between items-center">Is PostAlchemy really free? <span class="text-sky-400">+</span></summary>
+                <p class="text-slate-400 text-sm mt-3">Yes, it is 100% free. No signup, no hidden fees, no credit card required.</p>
+            </details>
+            <details class="glass rounded-xl p-5 cursor-pointer">
+                <summary class="font-semibold flex justify-between items-center">Do you store my content? <span class="text-sky-400">+</span></summary>
+                <p class="text-slate-400 text-sm mt-3">No. Your text is processed in real-time and never saved on our servers.</p>
+            </details>
+            <details class="glass rounded-xl p-5 cursor-pointer">
+                <summary class="font-semibold flex justify-between items-center">Which platforms are supported? <span class="text-sky-400">+</span></summary>
+                <p class="text-slate-400 text-sm mt-3">Currently LinkedIn, X (Twitter) threads, and Instagram captions.</p>
+            </details>
+            <details class="glass rounded-xl p-5 cursor-pointer">
+                <summary class="font-semibold flex justify-between items-center">Can I use this for my business? <span class="text-sky-400">+</span></summary>
+                <p class="text-slate-400 text-sm mt-3">Absolutely! It's perfect for marketers, founders, freelancers, and creators.</p>
+            </details>
+            <details class="glass rounded-xl p-5 cursor-pointer">
+                <summary class="font-semibold flex justify-between items-center">Is there a daily limit? <span class="text-sky-400">+</span></summary>
+                <p class="text-slate-400 text-sm mt-3">No, you can generate as many posts as you want, whenever you want.</p>
+            </details>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="glass mt-12 py-10 px-4">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h3 class="text-xl font-bold gradient-text mb-3">PostAlchemy</h3>
+                <p class="text-slate-400 text-sm">Turn simple thoughts into viral social media posts with AI.</p>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-3">Quick Links</h4>
+                <ul class="space-y-2 text-sm text-slate-400">
+                    <li><a href="#tool" class="hover:text-sky-400">Tool</a></li>
+                    <li><a href="#features" class="hover:text-sky-400">Features</a></li>
+                    <li><a href="#faq" class="hover:text-sky-400">FAQ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-3">Legal</h4>
+                <ul class="space-y-2 text-sm text-slate-400">
+                    <li><a href="about.html" class="hover:text-sky-400">About Us</a></li>
+                    <li><a href="contact.html" class="hover:text-sky-400">Contact</a></li>
+                    <li><a href="privacy.html" class="hover:text-sky-400">Privacy Policy</a></li>
+                    <li><a href="terms.html" class="hover:text-sky-400">Terms & Conditions</a></li>
+                    <li><a href="disclaimer.html" class="hover:text-sky-400">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center text-slate-500 text-xs mt-8 pt-6 border-t border-slate-800">
+            © 2026 PostAlchemy. All rights reserved.
+        </div>
+    </footer>
 
     <script>
-        async function generateContent(platform) {
-            const input = document.getElementById('inputText').value;
-            const outputDiv = document.getElementById('outputText');
-            
-            if(!input.trim()) {
-                outputDiv.innerText = "Please enter some content first!";
-                return;
-            }
-
-            outputDiv.innerText = "SwiftSocial AI is thinking...";
-            
-            try {
-                // Aapke Serverless Function / API route ko call kar rahe hain
-                const response = await fetch('/api/generate', { 
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ text: input, platform: platform })
-                });
-
-                const data = await response.json();
-
-                if (data.success) {
-                    let aiText = data.result;
-                    outputDiv.innerText = "";
-                    let i = 0;
-                    
-                    // Smooth Typewriter Effect for Real AI Data
-                    function type() {
-                        if (i < aiText.length) {
-                            outputDiv.innerText += aiText.charAt(i);
-                            i++;
-                            setTimeout(type, 10); // Speed set to 10ms for fast typing
-                        }
-                    }
-                    type();
-                } else {
-                    outputDiv.innerText = "Error: " + (data.error || "Something went wrong.");
-                }
-
-            } catch (error) {
-                outputDiv.innerText = "Error connecting to server: " + error.message;
-            }
-        }
-
-        function copyText() {
-            const text = document.getElementById('outputText').innerText;
-            navigator.clipboard.writeText(text);
-            alert("Copied to clipboard!");
-        }
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
     </script>
+    <script src="generate.js"></script>
 </body>
 </html>
