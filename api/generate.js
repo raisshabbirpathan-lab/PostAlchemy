@@ -25,11 +25,12 @@ module.exports = async (req, res) => {
 Text:
 ${prompt}`;
 
-    // Google ke naye models (2026) - 3.6-flash pehle, phir 2.5-flash fallback
+    // Google ke naye models (2026) - sabse latest pehle, phir fallback
     const models = [
       'gemini-3.6-flash',
-      'gemini-2.5-flash',
-      'gemini-2.5-flash-lite'
+      'gemini-3.5-flash',
+      'gemini-3.5-flash-lite',
+      'gemini-2.5-flash'
     ];
 
     let lastError = null;
@@ -51,7 +52,7 @@ ${prompt}`;
 
         if (!response.ok) {
           lastError = data.error?.message || 'Gemini API Error';
-          continue;
+          continue; // Agla model try karo
         }
 
         const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
