@@ -25,10 +25,11 @@ module.exports = async (req, res) => {
 Text:
 ${prompt}`;
 
-    // Google ke latest available models (3.6-flash sabse pehle, phir fallback)
+    // 'gemini-flash-latest' ek auto-updating alias hai jo hamesha latest model use karta hai.
+    // Isse aapko kabhi code update nahi karna padega.
     const models = [
-      'gemini-3.6-flash',
       'gemini-flash-latest',
+      'gemini-3.6-flash',
       'gemini-2.5-flash'
     ];
 
@@ -66,7 +67,6 @@ ${prompt}`;
       }
     }
 
-    // Agar saare models fail ho jayein
     return res.status(500).json({
       error: 'Server thoda busy hai. Kripya 2 minute baad dubara try karein. (Details: ' + lastError + ')'
     });
