@@ -11,10 +11,9 @@ module.exports = async (req, res) => {
 
   try {
     const { prompt, type } = req.body;
-    const fullPrompt = `Rewrite as a ${type || 'social media'} post with emojis & hashtags:\n\n${prompt}`;
+    const fullPrompt = `Write an engaging ${type || 'social media'} post (120-180 words) with emojis & hashtags based on: "${prompt}"`;
 
-    // FAST PATH: Direct fast models (single call = fastest)
-    const fastModels = ['gemini-flash-latest', 'gemini-2.5-flash', 'gemini-2.0-flash'];
+    const fastModels = ['gemini-flash-latest', 'gemini-2.0-flash', 'gemini-2.5-flash'];
 
     for (const model of fastModels) {
       try {
@@ -25,7 +24,7 @@ module.exports = async (req, res) => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               contents: [{ parts: [{ text: fullPrompt }] }],
-              generationConfig: { temperature: 0.9, maxOutputTokens: 800 }
+              generationConfig: { temperature: 0.9, maxOutputTokens: 600 }
             })
           }
         );
@@ -35,40 +34,10 @@ module.exports = async (req, res) => {
           const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
           if (text) return res.status(200).json({ text });
         }
-      } catch (err) { /* try next */ }
+      } catch (err) { /* next */ }
     }
 
-    // DISCOVERY PATH: Only if fast models fail (rare)
-    const listRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`);
-    const listData = await listRes.json();
-
-    const availableModels = (listData.models || [])
-      .filter(m => m.supportedGenerationMethods?.includes('generateContent'))
-      .map(m => m.name.replace('models/', ''))
-      .filter(name => name.includes('flash'));
-
-    for (const model of availableModels) {
-      try {
-        const response = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
-          {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              contents: [{ parts: [{ text: fullPrompt }] }],
-              generationConfig: { temperature: 0.9, maxOutputTokens: 800 }
-            })
-          }
-        );
-        if (!response.ok) continue;
-        const data = await response.json();
-        const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-        if (text) return res.status(200).json({ text });
-      } catch (err) { continue; }
-    }
-
-    return res.status(500).json({ error: '2 minute baad try karein.' });
-
+    return res.status(500).json({ error: 'Server busy. 2 minute baad try karein.' });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
