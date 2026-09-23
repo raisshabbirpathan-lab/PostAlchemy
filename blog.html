@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog & Guides - PostAlchemy</title>
+    <meta name="description" content="Learn how to create viral social media content with AI. Tips, guides, and strategies for LinkedIn, X, and Instagram.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { background: radial-gradient(circle at top, #0f172a, #020617); color: #f8fafc; min-height: 100vh; }
+        .glass { background: rgba(30, 41, 59, 0.4); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .gradient-text { background: linear-gradient(135deg, #38bdf8, #34d399); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .card-hover:hover { transform: translateY(-5px); border-color: rgba(56, 189, 248, 0.4); }
+    </style>
+</head>
+<body class="flex flex-col">
+
+    <!-- NAVBAR -->
+    <nav class="glass sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold gradient-text">PostAlchemy</a>
+            <div class="hidden md:flex space-x-8 items-center text-sm font-medium">
+                <a href="index.html#tool" class="hover:text-sky-400">Tool</a>
+                <a href="index.html#features" class="hover:text-sky-400">Features</a>
+                <a href="index.html#faq" class="hover:text-sky-400">FAQ</a>
+                <a href="blog.html" class="text-sky-400 font-bold">Blog</a>
+                <a href="about.html" class="hover:text-sky-400">About</a>
+                <a href="contact.html" class="hover:text-sky-400">Contact</a>
+            </div>
+            <a href="index.html" class="text-sm bg-sky-500 hover:bg-sky-600 text-slate-900 font-bold py-2 px-4 rounded-lg">Back to Tool</a>
+        </div>
+    </nav>
+
+    <!-- HEADER -->
+    <header class="text-center px-4 pt-16 pb-8">
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Blog & <span class="gradient-text">Guides</span></h1>
+        <p class="text-slate-400 max-w-2xl mx-auto">Learn how to create viral social media content with AI.</p>
+    </header>
+
+    <!-- ARTICLES GRID -->
+    <main class="flex-grow max-w-6xl mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Article 1 -->
+            <a href="article1.html" class="glass rounded-2xl p-6 card-hover transition block">
+                <span class="text-sky-400 text-xs font-bold uppercase">Guide</span>
+                <h2 class="text-xl font-bold mt-2 mb-3">How to Write Viral LinkedIn Posts with AI</h2>
+                <p class="text-slate-400 text-sm mb-4">Learn the exact framework to turn simple thoughts into posts that get engagement.</p>
+                <span class="text-sky-400 font-semibold text-sm">Read More →</span>
+            </a>
+
+            <!-- Article 2 -->
+            <a href="article2.html" class="glass rounded-2xl p-6 card-hover transition block">
+                <span class="text-sky-400 text-xs font-bold uppercase">Tips</span>
+                <h2 class="text-xl font-bold mt-2 mb-3">5 Ways AI Boosts Instagram Engagement</h2>
+                <p class="text-slate-400 text-sm mb-4">Discover how creators are using AI to write captions that actually convert.</p>
+                <span class="text-sky-400 font-semibold text-sm">Read More →</span>
+            </a>
+
+            <!-- Article 3 -->
+            <a href="article3.html" class="glass rounded-2xl p-6 card-hover transition block">
+                <span class="text-sky-400 text-xs font-bold uppercase">Strategy</span>
+                <h2 class="text-xl font-bold mt-2 mb-3">X (Twitter) Threads: The Complete Guide</h2>
+                <p class="text-slate-400 text-sm mb-4">How to structure threads that people actually read till the end.</p>
+                <span class="text-sky-400 font-semibold text-sm">Read More →</span>
+            </a>
+
+            <!-- Article 4 -->
+            <a href="article4.html" class="glass rounded-2xl p-6 card-hover transition block">
+                <span class="text-sky-400 text-xs font-bold uppercase">Freelancing</span>
+                <h2 class="text-xl font-bold mt-2 mb-3">Why AI is a Game-Changer for Freelancers</h2>
+                <p class="text-slate-400 text-sm mb-4">Save hours of work and impress clients with AI-generated content.</p>
+                <span class="text-sky-400 font-semibold text-sm">Read More →</span>
+            </a>
+
+            <!-- Article 5 -->
+            <a href="article5.html" class="glass rounded-2xl p-6 card-hover transition block">
+                <span class="text-sky-400 text-xs font-bold uppercase">Beginners</span>
+                <h2 class="text-xl font-bold mt-2 mb-3">AI Content Generation: A Beginner's Guide</h2>
+                <p class="text-slate-400 text-sm mb-4">Everything you need to know about using AI for social media.</p>
+                <span class="text-sky-400 font-semibold text-sm">Read More →</span>
+            </a>
+
+            <!-- Article 6 -->
+            <a href="article6.html" class="glass rounded-2xl p-6 card-hover transition block">
+                <span class="text-sky-400 text-xs font-bold uppercase">Mistakes</span>
+                <h2 class="text-xl font-bold mt-2 mb-3">Common AI Content Mistakes to Avoid</h2>
+                <p class="text-slate-400 text-sm mb-4">Don't make your content sound robotic. Here's how to fix it.</p>
+                <span class="text-sky-400 font-semibold text-sm">Read More →</span>
+            </a>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="glass py-8 mt-12">
+        <div class="max-w-6xl mx-auto px-4 text-center text-slate-400 text-sm">
+            <p>© 2026 PostAlchemy. All rights reserved.</p>
+            <div class="mt-4 space-x-4">
+                <a href="privacy.html" class="hover:text-sky-400">Privacy Policy</a>
+                <a href="terms.html" class="hover:text-sky-400">Terms</a>
+                <a href="disclaimer.html" class="hover:text-sky-400">Disclaimer</a>
+                <a href="contact.html" class="hover:text-sky-400">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
