@@ -1,82 +1,77 @@
 module.exports = async (req, res) => {
-  // CORS Headers - taaki frontend se connect ho sake
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  // OPTIONS request handle karna (browser preflight ke liye)
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
 
-  // Sirf POST request allow karna
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // Vercel se API Key nikalna
   const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
 
   if (!apiKey) {
-    return res.status(500).json({
-      error: 'API key is missing on backend. Please check Vercel Environment Variables.'
-    });
+    return res.status(500).json({ error: 'API key is missing on backend.' });
   }
 
   try {
     const { prompt, type } = req.body;
 
-    // AI ko diya jane wala prompt
-    const fullPrompt = `
-    You are a professional social media manager. Rewrite the following text into a professional ${type || 'Social Media'} post. 
-    Add relevant emojis and hashtags.
+    const fullPrompt = `You are a professional social media manager. Rewrite the following text into a professional ${type || 'Social Media'} post. Add relevant emojis and hashtags.
 
-    Text:
-    ${prompt}
-    `;
+Text:
+${prompt}`;
 
-    // Google Gemini ka naya endpoint aur naya model (gemini-3.6-flash)
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${apiKey}`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          contents: [
-            {
-              parts: [{ text: fullPrompt }]
-            }
-          ]
-        })
+    // Fallback ke liye models ki list (jo model available hoga, wahi use hoga)
+    const models = [
+      'gemini-3.6-flash',
+      'gemini-3.5-flash',
+      'gemini-2.5-flash'
+    ];
+
+    let lastError = null;
+
+    for (const model of models) {
+      try {
+        const response = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              contents: [{ parts: [{ text: fullPrompt }] }]
+            })
+          }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          lastError = data.error?.message || 'Gemini API Error';
+          continue; // Agla model try karo
+        }
+
+        const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+
+        if (text) {
+          return res.status(200).json({ text });
+        }
+
+        lastError = 'No response received from Gemini';
+      } catch (err) {
+        lastError = err.message;
       }
-    );
-
-    const data = await response.json();
-
-    // Agar Google se error aata hai
-    if (!response.ok) {
-      return res.status(500).json({
-        error: data.error?.message || 'Gemini API Error'
-      });
     }
 
-    // AI ka response nikalna
-    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-
-    if (!text) {
-      return res.status(500).json({
-        error: 'No response received from Gemini'
-      });
-    }
-
-    // Success response bhejna
-    return res.status(200).json({ text });
+    // Agar saare models fail ho jayein
+    return res.status(500).json({
+      error: 'All models are currently busy. Please try again in a few minutes. Details: ' + lastError
+    });
 
   } catch (err) {
-    return res.status(500).json({
-      error: err.message
-    });
+    return res.status(500).json({ error: err.message });
   }
 };
