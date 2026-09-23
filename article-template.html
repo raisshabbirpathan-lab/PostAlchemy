@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- YAHAN TITLE BADLEIN -->
+    <title>ARTICLE TITLE HERE - PostAlchemy</title>
+    <meta name="description" content="ARTICLE DESCRIPTION HERE">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { background: radial-gradient(circle at top, #0f172a, #020617); color: #f8fafc; min-height: 100vh; }
+        .glass { background: rgba(30, 41, 59, 0.4); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .gradient-text { background: linear-gradient(135deg, #38bdf8, #34d399); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .article-content h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2rem; margin-bottom: 1rem; }
+        .article-content h3 { font-size: 1.2rem; font-weight: 600; color: #fff; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+        .article-content p { margin-bottom: 1rem; line-height: 1.8; }
+        .article-content ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+        .article-content li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .article-content strong { color: #fff; }
+        .article-content a { color: #38bdf8; text-decoration: underline; }
+    </style>
+</head>
+<body class="flex flex-col">
+
+    <nav class="glass sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold gradient-text">PostAlchemy</a>
+            <div class="hidden md:flex space-x-8 items-center text-sm font-medium">
+                <a href="index.html#tool" class="hover:text-sky-400">Tool</a>
+                <a href="index.html#features" class="hover:text-sky-400">Features</a>
+                <a href="blog.html" class="hover:text-sky-400">Blog</a>
+                <a href="about.html" class="hover:text-sky-400">About</a>
+                <a href="contact.html" class="hover:text-sky-400">Contact</a>
+            </div>
+            <a href="index.html" class="text-sm bg-sky-500 hover:bg-sky-600 text-slate-900 font-bold py-2 px-4 rounded-lg">Back to Tool</a>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-3xl mx-auto px-4 py-12">
+        <article class="glass rounded-3xl p-8 md:p-12">
+
+            <!-- YAHAN CATEGORY BADLEIN -->
+            <span class="text-sky-400 text-xs font-bold uppercase tracking-wider">GUIDE</span>
+
+            <!-- YAHAN TITLE BADLEIN -->
+            <h1 class="text-3xl md:text-4xl font-extrabold mt-2 mb-6 leading-tight">ARTICLE TITLE HERE</h1>
+
+            <!-- YAHAN ARTICLE CONTENT LIKHEIN -->
+            <div class="article-content text-slate-300 text-sm md:text-base">
+
+                <p>Yahan apna introduction paragraph likhein. Yeh pehla paragraph hai jo reader ko article padhne ke liye attract karega.</p>
+
+                <h2>Yahan Subheading Likhein</h2>
+                <p>Yahan apna content likhein. Aap <strong>bold text</strong> bhi use kar sakte hain important cheezein highlight karne ke liye.</p>
+
+                <ul>
+                    <li>Pehla point yahan likhein</li>
+                    <li>Doosra point yahan likhein</li>
+                    <li>Teesra point yahan likhein</li>
+                </ul>
+
+                <h2>Doosri Subheading</h2>
+                <p>Yahan aur content likhein. Aap chahein toh <a href="index.html#tool">apne tool ka link bhi add kar sakte hain</a>.</p>
+
+                <h2>Conclusion</h2>
+                <p>Aakhir mein conclusion likhein jo reader ko action lene ke liye motivate kare.</p>
+
+            </div>
+
+            <!-- CTA -->
+            <div class="mt-12 pt-8 border-t border-slate-700 text-center">
+                <h3 class="text-xl font-bold mb-4">Ready to try it yourself?</h3>
+                <a href="index.html#tool" class="inline-block bg-sky-500 hover:bg-sky-600 text-slate-900 font-bold py-3 px-8 rounded-lg">
+                    Try PostAlchemy Free →
+                </a>
+            </div>
+
+        </article>
+    </main>
+
+    <footer class="glass py-8 mt-12">
+        <div class="max-w-6xl mx-auto px-4 text-center text-slate-400 text-sm">
+            <p>© 2026 PostAlchemy. All rights reserved.</p>
+            <div class="mt-4 space-x-4">
+                <a href="privacy.html" class="hover:text-sky-400">Privacy Policy</a>
+                <a href="terms.html" class="hover:text-sky-400">Terms</a>
+                <a href="disclaimer.html" class="hover:text-sky-400">Disclaimer</a>
+                <a href="contact.html" class="hover:text-sky-400">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
