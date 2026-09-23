@@ -25,11 +25,11 @@ module.exports = async (req, res) => {
 Text:
 ${prompt}`;
 
-    // Google ke naye "alias" models - yeh hamesha latest available model ko auto-select karte hain
+    // Google ke latest available models (3.6-flash sabse pehle, phir fallback)
     const models = [
+      'gemini-3.6-flash',
       'gemini-flash-latest',
-      'gemini-2.0-flash-lite',
-      'gemini-2.0-flash'
+      'gemini-2.5-flash'
     ];
 
     let lastError = null;
@@ -51,7 +51,7 @@ ${prompt}`;
 
         if (!response.ok) {
           lastError = data.error?.message || 'Gemini API Error';
-          continue;
+          continue; // Agla model try karo
         }
 
         const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
@@ -66,6 +66,7 @@ ${prompt}`;
       }
     }
 
+    // Agar saare models fail ho jayein
     return res.status(500).json({
       error: 'Server thoda busy hai. Kripya 2 minute baad dubara try karein. (Details: ' + lastError + ')'
     });
